@@ -28,6 +28,3 @@ replay_pid*
 .idea/
 
 .gradle/
-
-app/build/
-app/.cxx/
