@@ -1,3 +1,14 @@
+## Getting Started
+
+1.  **Prerequisites:**
+    *   Android Studio (latest stable version recommended)
+    *   Android SDK (with build-tools, platform-tools, etc.)
+    *   Android NDK (installed via SDK Manager)
+    *   CMake (installed via SDK Manager)
+    *   Java Development Kit (JDK) 11 or higher
+    *   Git (recommended for version control)
+
+2.  **Clone the Repository:**
 3.  **Open in Android Studio:**
     *   Launch Android Studio.
     *   Select "Open an existing Android Studio project."
