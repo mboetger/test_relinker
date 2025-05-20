@@ -2,21 +2,12 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'dart:developer';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 
 // This is on alternate entrypoint for this module to display Flutter UI in
 // a (multi-)view integration scenario.
 void main() {
-  log("**************** showCell *******************");
-  FlutterView implicitView = PlatformDispatcher.instance.implicitView!;
-  SceneBuilder builder = SceneBuilder();
-  Scene scene = builder.build();
-
-  implicitView.render(scene, size: Size(100, 101));
-  implicitView.render(scene, size: Size(200, 201));
+  runApp(const Cell());
 }
 
 class Cell extends StatefulWidget {
@@ -57,6 +48,7 @@ class _CellState extends State<Cell> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       home: Container(
         color: Colors.white,
+        constraints: BoxConstraints.tight(const Size(300, 300)),
         child: Builder(
           builder: (context) {
             return Card(
@@ -82,7 +74,7 @@ class _CellState extends State<Cell> with WidgetsBindingObserver {
                         Text(
                           // Show a number provided by the platform based on
                           // the cell's index.
-                          "\"Hi\"",
+                          "\"WTF\"",
                           style: Theme.of(context).textTheme.displaySmall,
                         ),
                       ],

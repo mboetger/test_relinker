@@ -27,6 +27,7 @@ android {
             ndk {
                 debugSymbolLevel = "FULL"
             }
+            packaging.jniLibs.keepDebugSymbols.add("**/*.so")
         }
         release {
             isMinifyEnabled = false
@@ -73,5 +74,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation(project(":flutter"))
+    debugImplementation("com.composenativehelloworld.aar_module:flutter_debug:1.0")
 }

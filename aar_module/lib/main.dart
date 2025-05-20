@@ -30,13 +30,7 @@ void main() {
 @pragma("vm:entry-point")
 void showCell() {
   log("**************** showCell *******************");
-  //runApp(const Cell());
-  FlutterView implicitView = PlatformDispatcher.instance.implicitView!;
-  SceneBuilder builder = SceneBuilder();
-  Scene scene = builder.build();
-
-  implicitView.render(scene, size: Size(100, 101));
-  implicitView.render(scene, size: Size(200, 201));
+  runApp(const Cell());
 }
 
 /// A simple model that uses a [MethodChannel] as the source of truth for the

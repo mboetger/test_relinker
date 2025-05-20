@@ -11,11 +11,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding // Added for spacing
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn // Added for the list
 import androidx.compose.foundation.lazy.items // Added for iterating in LazyColumn
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -23,7 +21,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp // Added for padding units
 import androidx.compose.ui.viewinterop.AndroidView
 import com.example.test_relinker.ui.theme.Test_relinkerTheme
@@ -45,7 +42,8 @@ class MainActivity : ComponentActivity() {
         @JvmStatic
         fun loadLibrary(context: Context) {
             if (loaded) return;
-            ReLinker.log { s -> Log.d("native-lib", s) }.loadLibrary(context, LIBRARY_NAME)
+            // This throws an exception when adding to app the flutter aar!
+            //ReLinker.log { s -> Log.d("native-lib", s) }.loadLibrary(context, LIBRARY_NAME)
             loaded = true;
         }
     }
@@ -91,7 +89,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    external fun stringFromJNI(): String
+    //external fun stringFromJNI(): String
 }
 
 @Composable
@@ -110,7 +108,7 @@ fun GreetingList(flutterView: FlutterView, modifier: Modifier = Modifier) {
                     factory = { context ->
                         flutterView.apply {}
                     },
-                    modifier = Modifier.padding(16.dp).height(200.dp),
+                    modifier = Modifier.padding(16.dp).wrapContentHeight()
                 )
             } else {
                 Greeting(
@@ -132,7 +130,8 @@ fun Greeting(modifier: Modifier = Modifier) {
     ) {
         val context = LocalContext.current
         if (context is MainActivity) {
-            Text(text = "Message from Native C++: ${context.stringFromJNI()}", modifier = Modifier.padding(10.dp))
+            val hello = "hello from Kotlin" //context.stringFromJNI()
+            Text(text = "Message from Native C++: $hello", modifier = Modifier.padding(10.dp))
         }
 
     }
